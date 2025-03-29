@@ -10,21 +10,37 @@
     font-family: 'Poppins', sans-serif;
   }
   body {
-    background-color: #fdfeff;
+    background-color: #f5f5dc;  /* Cream background */
+    color: #4b3621;             /* Brown text color for the body */
     overflow-x: hidden;
   }
 }
 
 @layer components {
   .input-box {
-    @apply w-full text-sm bg-transparent border-[1.5px] px-5 py-3 rounded mb-4 outline-none
+    @apply w-full text-sm bg-transparent border-[1.5px] px-5 py-3 rounded mb-4 outline-none;
+    border-color: #8b4513;      /* Brown border */
+    color: #4b3621;             /* Brown text color */
   }
 
-  .btn-primary{
-    @apply w-full text-sm bg-primary text-white p-2 rounded my-1 hover:bg-blue-600
+  .btn-primary {
+    @apply w-full text-sm p-2 rounded my-1;
+    background-color: #8b4513;  /* Brown button background */
+    color: #f5f5dc;             /* Cream text color */
+    transition: background 0.3s;
+  }
+
+  .btn-primary:hover {
+    background-color: #a0522d;  /* Lighter brown on hover */
   }
 
   .icon-btn {
-    @apply text-xl text-slate-300 cursor-pointer hover:text-primary;
+    @apply text-xl cursor-pointer;
+    color: #4b3621;             /* Brown icon color */
+    transition: color 0.3s;
+  }
+
+  .icon-btn:hover {
+    color: #8b4513;             /* Darker brown on hover */
   }
 }

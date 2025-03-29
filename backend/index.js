@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express")
 const cors = require("cors")
 const app = express()
-const port = 8000
+const port = 7000
 
 const config = require("./config.json")
 const mongoose = require("mongoose")
@@ -67,7 +67,7 @@ app.post("/create-account", async(req, res) => {
 })
 
 
-app.get("/login", async(req, res) => {
+app.post("/login", async(req, res) => {
     const {email , password} = req.body;
 
     if(!email){
@@ -103,10 +103,25 @@ app.get("/login", async(req, res) => {
     }
 })
 
+app.get("/get-user", authenticateToken, async(req, res) => {
+    const {user } = req.user;
+
+    const isUser = await User.findOne({email: user.email});
+
+    if(!isUser){
+        return res.status(401)
+    }
+
+
+    return res.json({
+        user: {fullName: isUser.fullName, email: isUser.email, _id: isUser._id, createdOn: isUser.createdOn},
+        message: "User fetched successfully"
+    })
+})
 
 // Add Note
 app.post("/add-note", authenticateToken, async (req, res) => {
-    const { title, content, isPinned, tags = [] } = req.body;  // Added default value for tags
+    const { title, content,isPinned, tags = [] } = req.body;  // Added default value for tags
     const { user } = req.user;
 
     // Input validation
