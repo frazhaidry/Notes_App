@@ -1,35 +1,31 @@
-import React, { useState } from 'react'
-import { FaRegEye, FaRegEyeSlash} from 'react-icons/fa6'
+import React, { useState } from 'react';
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 
-const Passwordinput = ({ value, onChange, placeholder}) => {
+const Passwordinput = ({ value, onChange, placeholder = 'Password', id = 'password', name = 'password' }) => {
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
-  const [isShowPassword, setIsShowPasswoed] = useState(false);
-
-  const toggleShowPassword = () => {
-    setIsShowPasswoed(!isShowPassword)
-  }
+  const toggleShowPassword = () => setIsShowPassword(!isShowPassword);
 
   return (
-    <div className='flex items-center bg-transparent border-[1.5px] px-5 rounded mb-3'>
-        <input value={value}
-        onChange={onChange}
+    <div className="relative mb-4">
+      <input
         type={isShowPassword ? 'text' : 'password'}
-        placeholder={placeholder || 'Password'}
-        className='w-full text-sm bg-transparent py-3 rounded outline-none' 
-        />
-
-       {isShowPassword ? <FaRegEye 
-          size={22}
-          className= "text-primary cusor-pointer"
-          onClick={() => toggleShowPassword()}
-        /> : <FaRegEyeSlash
-          size={22}
-          className= "text-slate-400 cusor-pointer"
-          onClick={() => toggleShowPassword()}
-          />
-        }
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className="w-full px-4 py-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 pr-10"
+        aria-label="Password"
+      />
+      <div
+        className="absolute right-3 top-3.5 cursor-pointer text-gray-400 hover:text-indigo-500 transition"
+        onClick={toggleShowPassword}
+      >
+        {isShowPassword ? <FaRegEye size={20} /> : <FaRegEyeSlash size={20} />}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Passwordinput
+export default Passwordinput;
