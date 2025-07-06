@@ -11,7 +11,12 @@ const app = express();
 connectDB();
 
 app.use(express.json());
-app.use(cors({ origin: "*" }));
+
+app.use(cors({
+  origin: ['https://your-frontend.vercel.app', 'http://localhost:5173'], // Replace with actual Vercel URL
+  credentials: true,
+}));
+
 
 app.get("/", (req, res) => {
     res.send("Hello World");
