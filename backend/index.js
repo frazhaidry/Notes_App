@@ -13,7 +13,7 @@ connectDB();
 app.use(express.json());
 
 app.use(cors({
-  origin: ['https://your-frontend.vercel.app', 'http://localhost:5173'], // Replace with actual Vercel URL
+  origin: ['https://notes-app-lvja.vercel.app', 'http://localhost:5173'], // Replace with actual Vercel URL
   credentials: true,
 }));
 
